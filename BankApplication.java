@@ -39,8 +39,9 @@ class BankAccount extends Account {
 
     @Override
     public void withdraw(double amount) {
-        double totalAmount = amount + BANK_CHARGE;
         if (amount > 0) {
+            // Total amount includes bank charges
+            double totalAmount = amount + BANK_CHARGE;
             if (balance >= totalAmount) {
                 balance -= totalAmount;
                 System.out.printf("Successfully withdrew R%.2f (including R%.2f bank charge). New balance: R%.2f%n", amount, BANK_CHARGE, balance);
@@ -150,6 +151,12 @@ public class BankApplication {
         System.out.print("Enter initial deposit amount: ");
         double initialDeposit = scanner.nextDouble();
 
+        // Ensure initial deposit is valid
+        if (initialDeposit <= 0) {
+            System.out.println("Initial deposit must be positive.");
+            return;
+        }
+
         System.out.print("Choose account type (1: Bank Account, 2: Savings Account): ");
         int accountType = scanner.nextInt();
 
@@ -181,14 +188,10 @@ public class BankApplication {
         System.out.print("Enter amount: ");
         double amount = scanner.nextDouble();
 
-        try {
-            if (type.equals("deposit")) {
-                account.deposit(amount);
-            } else if (type.equals("withdraw")) {
-                account.withdraw(amount);
-            }
-        } catch (Exception e) {
-            System.out.println("An error occurred during the transaction. Please try again.");
+        if (type.equals("deposit")) {
+            account.deposit(amount);
+        } else if (type.equals("withdraw")) {
+            account.withdraw(amount);
         }
     }
 

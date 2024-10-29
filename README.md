@@ -25,7 +25,8 @@ This is a simple console-based Java application that simulates basic bank accoun
 Compile the Java file using the following command:
 
 ```bash
-javac BankAccount.java
+javac BankApplication.java
+
 ```
 
 ### Execution
@@ -33,7 +34,8 @@ javac BankAccount.java
 Run the compiled program with:
 
 ```bash
-java BankAccount
+java BankApplication
+
 ```
 
 ## Usage
